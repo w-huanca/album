@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>前台-照片墙</title>
+    <link rel="stylesheet" href="css/index1.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.0-beta.2/vue.js"></script>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/alertify.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/alertify.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/default.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/semantic.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/alertify.rtl.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/default.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/semantic.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.rtl.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+
+<div th:include="component/header"></div>
+
+<main role="main">
+    <br><br>
+    <div class="container my-5" id="main">
+
+        <!-- Section: Components -->
+        <section class="">
+            <section id="demo" class="">
+
+
+                <hr class="my-5" />
+
+                <!--Section: Cards-->
+                <section>
+                    <div class="text-center">
+                        <h4><strong>欢迎光临(●'◡'●)</strong></h4><br>
+                    </div>
+                    <hr>
+                    <br>
+                    <!--Grid row-->
+                    <div class="row" v-if="albumList !== undefined && albumList.length > 0" >
+
+                        <!--Grid column 画廊-->
+                        <div class="col-lg-4 col-md-6 mb-4" v-for="(album,index) in albumList">
+                            <div class="card">
+                                <div class="bg-image hover-overlay ripple tmp" data-mdb-ripple-color="light">
+                                    <img :src="'/album/face/'+album.albumId" class="img-fluid" />
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{album.albumName}}</h5>
+                                    <p class="card-text">
+                                        <!--                                        Some quick example text to build on the card title and-->
+                                        <!--                                        make up the bulk of the card's content.-->
+                                    </p>
+                                    <a :href="'/AlbumDetail.html?albumId='+album.albumId" class="btn btn-primary" style="float: right">点击进入查看</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else style="text-align: center">
+                        公开的相册为空
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!--Section: Cards-->
+            </section>
+        </section>
+    </div>
+</main>
+
+
+<script src="/js/common.js" type="module"></script>
+<script src="/js/index.js" type="module"></script>
+
+
+</body>
+</html>

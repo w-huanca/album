@@ -1,0 +1,125 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Album Detail</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/carousel.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.11.5/umd/popper.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/holder/2.9.4/holder.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.js"></script>
+
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.7.0-beta.2/vue.js"></script>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/alertify.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/alertify.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/default.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/semantic.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/alertify.rtl.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/default.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/semantic.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/AlertifyJS/1.13.1/css/themes/bootstrap.rtl.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/AlbumDetail.css">
+
+</head>
+<body>
+
+<div th:include="component/header"></div>
+
+<main role="main">
+
+    <br><br>
+    <div class="container marketing" id="main">
+        <hr>
+
+        <div v-if="imageList !== undefined && imageList.length > 0">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <figure class="col-md-4 image-figure" v-for="picture in imageList">
+                        <a :href="'/picture/one?photoId='+picture.photoId" data-size="1600x1067">
+                            <img alt="picture" :src="'/picture/one?scale=0.8&photoId='+picture.photoId" class="img-fluid" height="300">
+                        </a>
+                        <div class="text-center">{{picture.photoName}}</div>
+                    </figure>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row" style="text-align: center" v-else>
+            <div class="text-center text-left">相册为空</div>
+        </div>
+
+
+        <hr>
+        <br><br><br><br><br>
+        <!-- 开始：评论列表 -->
+        <section class="">
+            <!--Section: Comments-->
+            <section class="border-bottom mb-3" v-for="(remark,index) in remarkList">
+                <!-- Comment -->
+                <div class="row mb-4">
+                    <div class="col-2">
+                        <img src="/images/img.png"
+                             class="img-fluid shadow-1-strong rounded" alt="" />
+                    </div>
+
+                    <div class="col-10">
+                        <p class="mb-2"><strong>{{remark.userName}}</strong></p>
+                        <p>{{remark.remarkInfo}}</p>
+                    </div>
+                </div>
+            </section>
+            <!--Section: Comments-->
+
+            <!--Section: Reply-->
+            <section>
+                <p class="text-center text-left"><strong>发表评论</strong></p>
+                <form>
+                    <!-- Message input -->
+                    <div class="form-outline mb-4">
+                        <textarea class="form-control" rows="4" id="comment"></textarea>
+                        <label class="form-label" for="comment">Text</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="button" class="btn btn-primary btn-block mb-4" @click="expressComment">
+                        发布
+                    </button>
+                </form>
+            </section>
+            <!--Section: Reply-->
+        </section>
+        <!-- 结束：评论列表 -->
+
+    </div><!-- /.container -->
+
+</main>
+
+
+
+<script src="/js/common.js" type="module"></script>
+<script src="/js/albumDetail.js" type="module"></script>
+
+</body>
+</html>
